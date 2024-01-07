@@ -52,7 +52,7 @@ def main():
         )
 
         args = parser.parse_args()
-        print(args.openai_api_key,args.github_token)
+        print(args.openai_api_base)
         github_api_url = args.github_api_url
         repo = args.github_repository
         github_token = args.github_token
@@ -64,6 +64,7 @@ def main():
             "base":openai_api_base,
             "key":openai_api_key
         }
+        print(connection_data)
         if allowed_users:
             allowed_users = allowed_users.split(",")
         open_ai_model = os.environ.get("INPUT_OPENAI_MODEL", "gpt-35-turbo-16k")
