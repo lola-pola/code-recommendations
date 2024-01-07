@@ -7,7 +7,6 @@ import json
 import sys
 import os
 import re
-
 def main():
     try:
         parser = argparse.ArgumentParser(
@@ -50,7 +49,6 @@ def main():
             required=False,
             help="A comma-separated list of GitHub usernames that are allowed to trigger the action, empty or missing means all users are allowed",
         )
-
         args = parser.parse_args()
         print(args.openai_api_base)
         github_api_url = args.github_api_url
@@ -109,9 +107,7 @@ def main():
             pull_files_chunk = json.loads(pull_files_result.text)
             if len(pull_files_chunk) == 0:
                 break
-            # pull_request_files.extend(pull_files_chunk)
             pull_request_files = pull_files_chunk
-            # print(pull_files_chunk)
             def find_comment_id(issue_number, comment_body):  
                 url = f'{github_api_url}/repos/{repo}/issues/{issue_number}/comments'  
                 response = requests.get(url, headers=authorization_header)  
@@ -120,20 +116,13 @@ def main():
                     if comment_body in comment['body']:  
                         return comment['id']  
                 return None  
-        
         model_temperature=0.8
         max_prompt_tokens = 6500
         open_ai_model="gpt-35-turbo-16k"
         bot_data = "you are a nice bot that validate the code inside a PR , please make it short , effective you can be also bit funny give code recommantions "
         messages=[{"role": "system","content": str(bot_data)},{"role": "user", "content": str(pull_request_files)}]
-        print(f"DEBUG: messages: {messages}")
         openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
         pull_req_genai = openai_response.choices[0].message.content
-        # open_ai_model="gpt-4"
-        # max_prompt_tokens = 6000
-        # model_temperature = 0.8
-        # messages=[{"role": "system","content": 'you bot that create PR review, make it short and to the point'},{"role": "user", "content": str(pull_req_genai)}]
-        # openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
         pull_req_genai = '# PR BOT ' + str(pull_req_genai)
         def find_comment_id(issue_number, comment_body):  
             url = f'{github_api_url}/repos/{repo}/issues/{issue_number}/comments'  
@@ -147,14 +136,12 @@ def main():
             url = f'{github_api_url}/repos/{repo}/issues/comments/{comment_id}'  
             response = requests.patch(url, headers=authorization_header, json={'body': new_body})  
             return response.status_code == 200  
-        
         def update_comment_in_pull_request(issue_number, comment_body, new_body):  
             comment_id = find_comment_id(issue_number, comment_body)  
             if comment_id:  
                 return update_comment(comment_id, new_body)  
             return False  
         update_comment_in_pull_request(pull_request_id, 'PR BOT', pull_req_genai)
-        print("need to generate new comment")
         requests.post(
                 f'{github_api_url}/repos/{repo}/issues/{pull_request_id}/comments',
                 headers=authorization_header,
