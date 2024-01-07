@@ -34,8 +34,8 @@ def generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api
 
 def generate_res(messages,open_ai_model,model_temperature=0.7,max_prompt_tokens=None,connection_data=None):
     print(f'connection_data : {connection_data}')
-    openai_api_key = connection_data["base"]
-    openai_api_base = connection_data["key"] 
+    openai_api_key = connection_data["key"]
+    openai_api_base = connection_data["base"] 
     return generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api_base,model_temperature,max_prompt_tokens)   
     
 
