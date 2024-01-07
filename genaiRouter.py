@@ -1,5 +1,4 @@
 from openai import AzureOpenAI
-debug = False
 
 def generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api_base,model_temperature=0.8,max_prompt_tokens=None):
     try:
@@ -18,21 +17,20 @@ def generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api
                 azure_endpoint=openai_api_base,
                 api_key=openai_api_key
         )
-        openai_response = client.chat.completions.create(
+        res = client.chat.completions.create(
             model=open_ai_model,
             messages=messages,
             temperature=model_temperature,
             max_tokens=max_prompt_tokens
         )
-        return openai_response
+        print(res)
+        return res
     except Exception as e:
         print(f'error :{e}')
         return 'Failed'
 
 def generate_res(messages,open_ai_model,model_temperature=0.7,max_prompt_tokens=None,connection_data=None):
-    if debug:
-        print(f'connection_data : {connection_data}')
-
+    print(f'connection_data : {connection_data}')
     openai_api_key = connection_data["base"]
     openai_api_base = connection_data["key"] 
     return generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api_base,model_temperature,max_prompt_tokens)   
