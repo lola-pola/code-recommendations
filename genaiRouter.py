@@ -19,6 +19,7 @@ def generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api
                 azure_endpoint=openai_api_base,
                 api_key=openai_api_key
         )
+        print(client)
         res = client.chat.completions.create(
             model=open_ai_model,
             messages=messages,
