@@ -28,20 +28,20 @@ def main():
         parser.add_argument(
             "--github-token",
             type=str,
-            required=False,
+            required=True,
             help="The GitHub token",
         )
         parser.add_argument(
             "--openai-api-base",
             type=str,
-            required=False,
+            required=True,
             help="The OpenAI API base URL",
             default="https://x.x.x.x"
         )
         parser.add_argument(
             "--openai-api-key",
             type=str,
-            required=False,
+            required=True,
             help="The OpenAI API key",
                     ) 
         parser.add_argument(

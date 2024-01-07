@@ -18,5 +18,6 @@ fi
   --github-repository "$GITHUB_REPOSITORY" \
   --pull-request-id "$pull_request_id" \
   --openai-api-key "$INPUT_OPENAI_API_KEY" \
-  --github-token "$INPUT_GITHUB_TOKEN" 
+  --github-token "$INPUT_GITHUB_TOKEN" \
+  --openai-api-base "$INPUT_OPENAI_API_BASE"
 
