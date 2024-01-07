@@ -123,18 +123,18 @@ def main():
                     return None  
             print(f"DEBUG: messages: {messages}")
             if pull_request_data["body"]:
-                model_temperature=0.7
+                model_temperature=0.8
                 max_prompt_tokens = 6500
                 open_ai_model="gpt-35-turbo-16k"
                 bot_data = "you are a nice bot that validate the code inside a PR , please make it short , effective you can be also bit funny give code recommantions "
                 messages=[{"role": "system","content": str(bot_data)},{"role": "user", "content": str(pull_request_files)}]
                 openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
                 pull_req_genai = openai_response.choices[0].message.content
-                open_ai_model="gpt-4"
-                max_prompt_tokens = 6000
-                model_temperature = 0.5
-                messages=[{"role": "system","content": 'you bot that create PR review, make it short and to the point'},{"role": "user", "content": str(pull_req_genai)}]
-                openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
+                # open_ai_model="gpt-4"
+                # max_prompt_tokens = 6000
+                # model_temperature = 0.8
+                # messages=[{"role": "system","content": 'you bot that create PR review, make it short and to the point'},{"role": "user", "content": str(pull_req_genai)}]
+                # openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
                 pull_req_genai = '# PR BOT ' + str(pull_req_genai)
                 def find_comment_id(issue_number, comment_body):  
                     url = f'{github_api_url}/repos/{repo}/issues/{issue_number}/comments'  
