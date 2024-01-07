@@ -123,7 +123,7 @@ def main():
         messages=[{"role": "system","content": str(bot_data)},{"role": "user", "content": str(pull_request_files)}]
         openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
         pull_req_genai = openai_response.choices[0].message.content
-        pull_req_genai = '> [!TIP] \n\n ### GENAI BOT' \n\n + str(pull_req_genai)
+        pull_req_genai = '> [!TIP] \n\n ### GENAI BOT \n\n'  + str(pull_req_genai)
         def find_comment_id(issue_number, comment_body):  
             url = f'{github_api_url}/repos/{repo}/issues/{issue_number}/comments'  
             response = requests.get(url, headers=authorization_header)  
