@@ -64,6 +64,7 @@ def main():
             "base":openai_api_base,
             "key":openai_api_key
         }
+        print(connection_data)
         if allowed_users:
             allowed_users = allowed_users.split(",")
         open_ai_model = os.environ.get("INPUT_OPENAI_MODEL", "gpt-35-turbo-16k")
