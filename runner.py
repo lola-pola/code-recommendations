@@ -28,7 +28,7 @@ def main():
         parser.add_argument(
             "--github-token",
             type=str,
-            required=True,
+            required=False,
             help="The GitHub token",
         )
         parser.add_argument(
@@ -41,7 +41,7 @@ def main():
         parser.add_argument(
             "--openai-api-key",
             type=str,
-            required=True,
+            required=False,
             help="The OpenAI API key",
                     ) 
         parser.add_argument(
@@ -52,6 +52,7 @@ def main():
         )
 
         args = parser.parse_args()
+        print(args.openai_api_key,args.github_token)
         github_api_url = args.github_api_url
         repo = args.github_repository
         github_token = args.github_token
