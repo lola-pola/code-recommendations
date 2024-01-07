@@ -121,13 +121,14 @@ def main():
                         if comment_body in comment['body']:  
                             return comment['id']  
                     return None  
-            print(f"DEBUG: messages: {messages}")
+            
             if pull_request_data["body"]:
                 model_temperature=0.8
                 max_prompt_tokens = 6500
                 open_ai_model="gpt-35-turbo-16k"
                 bot_data = "you are a nice bot that validate the code inside a PR , please make it short , effective you can be also bit funny give code recommantions "
                 messages=[{"role": "system","content": str(bot_data)},{"role": "user", "content": str(pull_request_files)}]
+                print(f"DEBUG: messages: {messages}")
                 openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
                 pull_req_genai = openai_response.choices[0].message.content
                 # open_ai_model="gpt-4"
