@@ -119,11 +119,11 @@ def main():
         model_temperature=0.8
         max_prompt_tokens = 6500
         open_ai_model="gpt-35-turbo-16k"
-        bot_data = "you are a nice bot that validate the code inside a PR , please make it short , effective you can be also bit funny give code recommantions "
+        bot_data = "you are a nice bot that validate the code inside a PR , please make it short , effective you can be also bit funny give code recommendations "
         messages=[{"role": "system","content": str(bot_data)},{"role": "user", "content": str(pull_request_files)}]
         openai_response = generate_res(messages,open_ai_model,model_temperature,max_prompt_tokens,connection_data)
         pull_req_genai = openai_response.choices[0].message.content
-        pull_req_genai = '[!TIP] GENAI BOT' + str(pull_req_genai)
+        pull_req_genai = '> [!TIP] /n GENAI BOT' + str(pull_req_genai)
         def find_comment_id(issue_number, comment_body):  
             url = f'{github_api_url}/repos/{repo}/issues/{issue_number}/comments'  
             response = requests.get(url, headers=authorization_header)  
