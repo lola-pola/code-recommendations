@@ -52,7 +52,7 @@ def main():
         )
 
         args = parser.parse_args()
-        print(args.openai_api_key,args.github_token)
+        print(args.openai_api_base)
         github_api_url = args.github_api_url
         repo = args.github_repository
         github_token = args.github_token
