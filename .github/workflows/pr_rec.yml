@@ -6,7 +6,7 @@ jobs:
   openai-pr-description:
     runs-on: ubuntu-22.04
     steps:
-      - uses: lola-pola/code-recommendations@master
+      - uses: lola-pola/code-recommendations@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
