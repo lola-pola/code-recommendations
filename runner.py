@@ -110,7 +110,7 @@ def main():
                 pull_files_chunk = json.loads(pull_files_result.text)
                 if len(pull_files_chunk) == 0:
                     break
-                pull_request_files.extend(pull_files_chunk)
+                # pull_request_files.extend(pull_files_chunk)
                 def find_comment_id(issue_number, comment_body):  
                     url = f'{github_api_url}/repos/{repo}/issues/{issue_number}/comments'  
                     response = requests.get(url, headers=authorization_header)  
