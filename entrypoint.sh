@@ -13,8 +13,6 @@ else
   pull_request_id="$INPUT_PULL_REQUEST_ID"
 fi
 
-
-
 /action/runner.py \
   --github-api-url "$GITHUB_API_URL" \
   --github-repository "$GITHUB_REPOSITORY" \

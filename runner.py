@@ -60,9 +60,10 @@ def main():
         openai_api_base = args.openai_api_base
         allowed_users = os.environ.get("INPUT_ALLOWED_USERS", "")
         runner = True
-        connection_data = openai_api_key
-        if debug:
-            print(connection_data)
+        connection_data = {
+            "base":openai_api_base,
+            "key":openai_api_key
+        }
         if runner:
             if allowed_users:
                 allowed_users = allowed_users.split(",")
