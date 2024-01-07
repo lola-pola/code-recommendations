@@ -2,6 +2,8 @@ from openai import AzureOpenAI
 
 def generic_azure_openai_client(openai_api_key,open_ai_model,messages,openai_api_base,model_temperature=0.8,max_prompt_tokens=None):
     try:
+        print('debbuuuggg')
+        print(openai_api_key,open_ai_model,messages,openai_api_base,model_temperature,max_prompt_tokens)
         models_size = {
             "gpt-35-turbo-16k": 16000,
             "gpt-4-32k": 32000,
